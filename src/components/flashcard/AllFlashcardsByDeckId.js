@@ -22,7 +22,7 @@ class AllFlashcardsByDeckId extends Component {
     getFlashcardsByDeckId = async () => {
         try {
             const deckId = this.props.deckId
-            const res = await axios.get(`/api/v1/flashcards/deck/${deckId}`)
+            const res = await axios.get(`https://protected-temple-87139.herokuapp.com/api/v1/flashcards/deck/${deckId}`)
             const newState = {...this.state}
             newState.flashcards = res.data
             this.setState(newState)

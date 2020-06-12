@@ -18,7 +18,7 @@ class SingleUser extends Component {
     getUserById = async () => {
         try {
             const userId = this.props.match.params.userId
-            const res = await axios.get(`/api/v1/user/${userId}`)
+            const res = await axios.get(`https://protected-temple-87139.herokuapp.com/api/v1/user/${userId}`)
             const newState = {...this.state}
             newState.user = res.data
             this.setState(newState)
@@ -37,7 +37,7 @@ class SingleUser extends Component {
     onSubmit = async (evt) => {
         evt.preventDefault()
         try {
-            await axios.put('/api/v1/user/editUser', this.state.user)
+            await axios.put('https://protected-temple-87139.herokuapp.com/api/v1/user/editUser', this.state.user)
             console.log("edited user")
         } catch (e) {
             console.log("failed to edit user")

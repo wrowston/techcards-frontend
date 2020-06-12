@@ -19,7 +19,7 @@ class NewSubjectForm extends Component {
     onSubmit = async (evt) => {
         evt.preventDefault()
         try {
-            await axios.post('/api/v1/subject/newSubject', this.state.subject)
+            await axios.post('https://protected-temple-87139.herokuapp.com/api/v1/subject/newSubject', this.state.subject)
             console.log("created a new subject")
         } catch (e) {
             console.log("failed to create a new subject")

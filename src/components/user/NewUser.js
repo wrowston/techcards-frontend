@@ -20,7 +20,7 @@ class NewUser extends Component {
     onSubmit = async (evt) => {
         evt.preventDefault()
         try {
-            await axios.post('/api/v1/user/newUser', this.state.user)
+            await axios.post('https://protected-temple-87139.herokuapp.com/api/v1/user/newUser', this.state.user)
             console.log("created a new user")
         } catch (e) {
             console.log("failed to create a new user")

@@ -18,7 +18,7 @@ class EditFlashcard extends Component {
     getFlashcardById = async () => {
         try {
             const flashcardId = this.props.match.params.flashcardId
-            const res = await axios.get(`/api/v1/flashcards/editFlashcard/${flashcardId}`)
+            const res = await axios.get(`https://protected-temple-87139.herokuapp.com/api/v1/flashcards/editFlashcard/${flashcardId}`)
             const newState = {...this.state}
             newState.flashcard = res.data
             this.setState(newState)
@@ -37,7 +37,7 @@ class EditFlashcard extends Component {
     onSubmit = async (evt) => {
             evt.preventDefault()
             try {
-                await axios.put('/api/v1/flashcards/editFlashcard', this.state.flashcard)
+                await axios.put('https://protected-temple-87139.herokuapp.com/api/v1/flashcards/editFlashcard', this.state.flashcard)
                 console.log("edited flashcard")
             } catch (e) {
                 console.log("failed to edit flashcard")

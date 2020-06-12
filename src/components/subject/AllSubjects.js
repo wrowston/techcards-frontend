@@ -19,7 +19,7 @@ class AllSubjects extends Component {
 
     getAllSubjects = async () => {
         try {
-            const res = await axios.get('/api/v1/subject/all')
+            const res = await axios.get('https://protected-temple-87139.herokuapp.com/api/v1/subject/all')
             const newState = {...this.state}
             newState.currentUserId = this.props.userId
             newState.allSubjects = res.data

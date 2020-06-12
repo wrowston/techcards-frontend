@@ -18,7 +18,7 @@ class AllDecksBySubjectId extends Component {
     getDecksBySubjectId = async () => {
         try {
             const subjectId = this.props.subjectId
-            const res = await axios.get(`/api/v1/deck/subject/${subjectId}`)
+            const res = await axios.get(`https://protected-temple-87139.herokuapp.com/api/v1/deck/subject/${subjectId}`)
             const newState = {...this.state}
             newState.deckList = res.data
             this.setState(newState)

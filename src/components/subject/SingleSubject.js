@@ -21,7 +21,7 @@ class SingleSubject extends Component {
     getSubjectById = async () => {
         try {
             const subjectId = this.props.match.params.subjectId
-            const res = await axios.get(`/api/v1/subject/${subjectId}`)
+            const res = await axios.get(`https://protected-temple-87139.herokuapp.com/api/v1/subject/${subjectId}`)
             const newState = {...this.state}
             newState.subject = res.data
             this.setState(newState)
@@ -40,7 +40,7 @@ class SingleSubject extends Component {
     onSubmit = async (evt) => {
         evt.preventDefault()
         try {
-            await axios.put('/api/v1/subject/editSubject', this.state.subject)
+            await axios.put('https://protected-temple-87139.herokuapp.com/api/v1/subject/editSubject', this.state.subject)
             console.log("edited subject")
         } catch (e) {
             console.log("failed to edit subject")

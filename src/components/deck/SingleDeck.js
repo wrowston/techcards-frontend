@@ -20,7 +20,7 @@ class SingleDeck extends Component {
     getDeckById = async () => {
         try {
             const deckId = this.props.match.params.deckId
-            const res = await axios.get(`/api/v1/deck/${deckId}`)
+            const res = await axios.get(`https://protected-temple-87139.herokuapp.com/api/v1/deck/${deckId}`)
             const newState = {...this.state}
             newState.deck = res.data
             this.setState(newState)
