@@ -25,7 +25,7 @@ class NavBar extends Component {
 
     getAllUsers = async () => {
         try {
-            const res = await axios.get('/api/v1/user/all')
+            const res = await axios.get('https://protected-temple-87139.herokuapp.com/api/v1/user/all')
             const newState = {...this.state}
             newState.allUsers = res.data
             this.setState(newState)
