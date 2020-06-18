@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import NewDeck from "./NewDeck";
 import Button from "react-bootstrap/Button";
+import Table from "react-bootstrap/Table";
 
 class AllDecksBySubjectId extends Component {
 
@@ -50,21 +51,36 @@ class AllDecksBySubjectId extends Component {
                         </div>
                     :
                         <div>
-                            {this.state.deckList.map((deck, index) => {
-                                return (
-                                    <div key={`f432fw44f - ${index}`}>
-                                        <Link to={`/deck/${deck.id}`}>
-                                            <div>{deck.name}</div>
-                                        </Link>
-                                        {/*<div>Flashcards: {deck.flashcards.length}</div>*/}
-                                        {/*<div>Likes: {deck.likes.length}</div>*/}
-                                        {/*TODO: pass this.prop.userId through create deck comp*/}
-                                    </div>
-                                )
-                            })}
-                            <Button variant="outline-dark" onClick={this.toggleNewDeckForm} >
-                                Add A Deck
-                            </Button>
+                            <div className="subject-decks">
+                                <Table striped bordered hover variant="dark" style={{ width: '18rem' }}>
+                                    <thead>
+                                    <tr>
+                                        <th className="deck-table-title">Decks</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {this.state.deckList.map((deck, index) => {
+                                        return (
+                                            <div key={`f432fw44f - ${index}`}>
+                                                <Link to={`/deck/${deck.id}`} className="deck-title">
+                                                    <tr>
+                                                        <td style={{ width: '18rem' }}>{deck.name}</td>
+                                                    </tr>
+                                                </Link>
+                                                {/*<div>Flashcards: {deck.flashcards.length}</div>*/}
+                                                {/*<div>Likes: {deck.likes.length}</div>*/}
+                                                {/*TODO: pass this.prop.userId through create deck comp*/}
+                                            </div>
+                                        )
+                                    })}
+                                    </tbody>
+                                </Table>
+                            </div>
+                            <div className="add-deck-button">
+                                <Button variant="outline-dark" onClick={this.toggleNewDeckForm} >
+                                    Add A Deck
+                                </Button>
+                            </div>
                         </div>
                     }
                 </div>

@@ -84,18 +84,22 @@ class SingleSubject extends Component {
                         </form>
                     </div>
                 :
-                    <div>
-                        <img className="subject-img" src={this.state.subject.imageUrl}/>
-                        <div className="title">{this.state.subject.name}</div>
-                        {/*<div>{this.state.subject.deckList.map()}</div>*/}
+                    <div className="single-subject">
+                        <div className="subject-info">
+                            <img className="subject-img" src={this.state.subject.imageUrl}/>
+                            <div className="subject-title">{this.state.subject.name}</div>
+                            {/*<div>{this.state.subject.deckList.map()}</div>*/}
+                            <Button variant="outline-dark" onClick={this.toggleEditForm} >
+                                Edit
+                            </Button>
+                        </div>
 
-                        <AllDecksBySubjectId
-                            subjectId={this.props.match.params.subjectId}
-                            userId={this.props.userId}
-                        />
-                        <Button variant="outline-dark" onClick={this.toggleEditForm} >
-                            Edit
-                        </Button>
+                        <div>
+                            <AllDecksBySubjectId
+                                subjectId={this.props.match.params.subjectId}
+                                userId={this.props.userId}
+                            />
+                        </div>
                     </div>
                 }
             </div>
