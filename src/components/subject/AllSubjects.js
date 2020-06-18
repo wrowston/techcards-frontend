@@ -53,7 +53,6 @@ class AllSubjects extends Component {
                             {this.state.allSubjects.map((subject, index) => {
                                 return (
                                     <div key={`t3426gfw7 - ${index}`}>
-                                        <div className="subject">
                                             {/*TODO: use subject name instead of id in url... pass id through with props*/}
                                             <Link to={`/subject/${subject.id}`}
                                             //       onClick={() => {
@@ -62,11 +61,12 @@ class AllSubjects extends Component {
                                             //     this.setState(newState)
                                             // }}
                                             >
-                                                <img className="subject-img" src={subject.imageUrl}/>
-                                                <div className="subject-name">{subject.name}</div>
-                                                {/*TODO: add deck length to get total decks*/}
+                                                <div className="subject">
+                                                    <img className="subject-img" src={subject.imageUrl}/>
+                                                    <div className="subject-name">{subject.name}</div>
+                                                    {/*TODO: add deck length to get total decks*/}
+                                                </div>
                                             </Link>
-                                        </div>
                                     </div>
                                     )
                             })}
