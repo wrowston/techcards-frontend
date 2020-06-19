@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from "axios";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
-import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom'
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
 import Home from "./Home";
 import AllSubjects from "./subject/AllSubjects";
 import SingleSubject from "./subject/SingleSubject";
@@ -26,7 +26,7 @@ class NavBar extends Component {
     getAllUsers = async () => {
         try {
             const res = await axios.get('https://protected-temple-87139.herokuapp.com/api/v1/user/all')
-            const newState = {...this.state}
+            const newState = { ...this.state }
             newState.allUsers = res.data
             this.setState(newState)
         } catch (e) {
@@ -43,17 +43,17 @@ class NavBar extends Component {
                     <nav className="nav-bar">
 
                         {/*TODO: pass current id to links with state*/}
-                        <Link to={"/browse/subjects"}>
-                            <div className="nav-link">Browse</div>
+                        <Link to={"/browse/subjects"} className="nav-link">
+                            <div>Browse</div>
                         </Link>
                         <div className="nav-link">Create</div>
 
-                        <Link to={"/"}>
-                            <div className="logo">TECHCARDS</div>
+                        <Link to={"/"} className="logo">
+                            <div>TECHCARDS</div>
                         </Link>
 
-                        <Link to={"/users"}>
-                            <div className="nav-link">Users</div>
+                        <Link to={"/users"} className="nav-link">
+                            <div>Users</div>
                         </Link>
 
                         <DropdownButton id="dropdown-basic-button" title="Select User">
@@ -61,7 +61,7 @@ class NavBar extends Component {
                                 return (
                                     <div key={`fw755wf34 - ${index}`}>
                                         <Dropdown.Item onClick={() => {
-                                            const newState = {...this.state}
+                                            const newState = { ...this.state }
                                             newState.currentUserId = user.id
                                             this.setState(newState)
                                         }}>{user.name}</Dropdown.Item>
@@ -72,14 +72,14 @@ class NavBar extends Component {
                     </nav>
                     <div className="wrapper">
                         <Switch>
-                            <Route exact path="/" render={(props) => <Home {...props} userId={this.state.currentUserId}/>} />
-                            <Route exact path="/browse/subjects" render={(props) => <AllSubjects {...props} userId={this.state.currentUserId}/>}/>
-                            <Route exact path="/subject/:subjectId" render={(props) => <SingleSubject {...props} userId={this.state.currentUserId}/>}/>
-                            <Route exact path="/deck/:deckId" component={SingleDeck}/>
-                            <Route exact path="/user/newUser" component={NewUser}/>
-                            <Route exact path="/users" component={AllUsers}/>
-                            <Route exact path="/user/:userId" component={SingleUser}/>
-                            <Route exact path="/flashcards/editFlashcard/:flashcardId" component={EditFlashcard}/>
+                            <Route exact path="/" render={(props) => <Home {...props} userId={this.state.currentUserId} />} />
+                            <Route exact path="/browse/subjects" render={(props) => <AllSubjects {...props} userId={this.state.currentUserId} />} />
+                            <Route exact path="/subject/:subjectId" render={(props) => <SingleSubject {...props} userId={this.state.currentUserId} />} />
+                            <Route exact path="/deck/:deckId" component={SingleDeck} />
+                            <Route exact path="/user/newUser" component={NewUser} />
+                            <Route exact path="/users" component={AllUsers} />
+                            <Route exact path="/user/:userId" component={SingleUser} />
+                            <Route exact path="/flashcards/editFlashcard/:flashcardId" component={EditFlashcard} />
                         </Switch>
                     </div>
                 </Router>

@@ -27,6 +27,10 @@
   color: #000000;
 }
 
+.logo:hover {
+  color: #000000;
+}
+
 .nav-link {
   font-family: -apple-system, BlinkMacSystemFont, Roboto, Monaco, sans-serif;
   font-style: normal;
@@ -167,12 +171,12 @@
 /*Decks*/
 
 .deck-title {
-  color: white;
+  color: black;
   text-align: center;
 }
 
 .deck-title:hover {
-  color: white;
+  color: black;
 }
 
 .deck-table-title {

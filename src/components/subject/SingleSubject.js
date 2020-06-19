@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios'
 import AllDecksBySubjectId from "../deck/AllDecksBySubjectId";
 import Button from "react-bootstrap/Button";
@@ -22,7 +22,7 @@ class SingleSubject extends Component {
         try {
             const subjectId = this.props.match.params.subjectId
             const res = await axios.get(`https://protected-temple-87139.herokuapp.com/api/v1/subject/${subjectId}`)
-            const newState = {...this.state}
+            const newState = { ...this.state }
             newState.subject = res.data
             this.setState(newState)
         } catch (e) {
@@ -32,7 +32,7 @@ class SingleSubject extends Component {
     }
 
     handleChange = (evt) => {
-        const newState = {...this.state}
+        const newState = { ...this.state }
         newState.subject[evt.target.name] = evt.target.value
         this.setState(newState)
     }
@@ -58,7 +58,7 @@ class SingleSubject extends Component {
         return (
             <div>
                 {this.state.showEditForm
-                ?
+                    ?
                     <div>
                         <form onSubmit={this.onSubmit} className="form">
                             <label className="form-label">Subject Name</label>
@@ -77,16 +77,16 @@ class SingleSubject extends Component {
                                 onChange={this.handleChange}
                                 value={this.state.subject.imageUrl}
                             />
-                            <input type="submit" value="Save"/>
+                            <input type="submit" value="Save" />
                             <Button variant="outline-dark" className="back-button" onClick={this.toggleEditForm} >
                                 Back
                             </Button>
                         </form>
                     </div>
-                :
+                    :
                     <div className="single-subject">
                         <div className="subject-info">
-                            <img className="subject-img" src={this.state.subject.imageUrl}/>
+                            <img className="subject-img" src={this.state.subject.imageUrl} />
                             <div className="subject-title">{this.state.subject.name}</div>
                             {/*<div>{this.state.subject.deckList.map()}</div>*/}
                             <Button variant="outline-dark" onClick={this.toggleEditForm} >

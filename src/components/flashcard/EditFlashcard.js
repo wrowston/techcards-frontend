@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from "axios";
 
 class EditFlashcard extends Component {
@@ -18,8 +18,8 @@ class EditFlashcard extends Component {
     getFlashcardById = async () => {
         try {
             const flashcardId = this.props.match.params.flashcardId
-            const res = await axios.get(`https://protected-temple-87139.herokuapp.com/api/v1/flashcards/editFlashcard/${flashcardId}`)
-            const newState = {...this.state}
+            const res = await axios.get(`https://protected-temple-87139.herokuapp.com/api/v1/flashcards/${flashcardId}`)
+            const newState = { ...this.state }
             newState.flashcard = res.data
             this.setState(newState)
         } catch (e) {
@@ -29,24 +29,28 @@ class EditFlashcard extends Component {
     }
 
     handleChange = (evt) => {
-        const newState = {...this.state}
+        const newState = { ...this.state }
         newState.flashcard[evt.target.name] = evt.target.value
         this.setState(newState)
     }
 
     onSubmit = async (evt) => {
-            evt.preventDefault()
-            try {
-                await axios.put('https://protected-temple-87139.herokuapp.com/api/v1/flashcards/editFlashcard', this.state.flashcard)
-                console.log("edited flashcard")
-            } catch (e) {
-                console.log("failed to edit flashcard")
-                console.error(e)
-            }
+        evt.preventDefault()
+        try {
+            const flashcardId = this.props.match.params.flashcardId
+            await axios.put(`https://protected-temple-87139.herokuapp.com/api/v1/flashcards/editFlashcard/`, this.state.flashcard);
+            console.log("edited flashcard")
+        } catch (e) {
+            console.log("failed to edit flashcard")
+            console.error(e)
+        }
     }
 
 
     render() {
+        const { flashcardId } = this.props;
+        const { flashcard } = this.state;
+        const { clue, answer } = flashcard;
         return (
             <div>
                 <div>
@@ -55,7 +59,7 @@ class EditFlashcard extends Component {
                             type="hidden"
                             name="id"
                             className="form-input"
-                            value={this.props.flashcardId}
+                            value={this.props.match.params.flashcardId}
                             onChange={this.handleChange}
                         />
                         <label className="form-label">Clue</label>
@@ -81,7 +85,7 @@ class EditFlashcard extends Component {
                             value={this.props.deckId}
                             onChange={this.handleChange}
                         />
-                        <input type="submit" value="Save"/>
+                        <input type="submit" value="Save" />
                     </form>
                 </div>
             </div>

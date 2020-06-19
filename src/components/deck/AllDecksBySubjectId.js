@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import NewDeck from "./NewDeck";
@@ -20,7 +20,7 @@ class AllDecksBySubjectId extends Component {
         try {
             const subjectId = this.props.subjectId
             const res = await axios.get(`https://protected-temple-87139.herokuapp.com/api/v1/deck/subject/${subjectId}`)
-            const newState = {...this.state}
+            const newState = { ...this.state }
             newState.deckList = res.data
             this.setState(newState)
         } catch (e) {
@@ -39,7 +39,7 @@ class AllDecksBySubjectId extends Component {
             <div>
                 <div>
                     {this.state.showNewDeckForm
-                    ?
+                        ?
                         <div>
                             <NewDeck
                                 userId={this.props.userId}
@@ -49,32 +49,22 @@ class AllDecksBySubjectId extends Component {
                                 Back
                             </Button>
                         </div>
-                    :
+                        :
                         <div>
                             <div className="subject-decks">
-                                <Table striped bordered hover variant="dark" style={{ width: '18rem' }}>
-                                    <thead>
-                                    <tr>
-                                        <th className="deck-table-title">Decks</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {this.state.deckList.map((deck, index) => {
-                                        return (
-                                            <div key={`f432fw44f - ${index}`}>
-                                                <Link to={`/deck/${deck.id}`} className="deck-title">
-                                                    <tr>
-                                                        <td style={{ width: '18rem' }}>{deck.name}</td>
-                                                    </tr>
-                                                </Link>
-                                                {/*<div>Flashcards: {deck.flashcards.length}</div>*/}
-                                                {/*<div>Likes: {deck.likes.length}</div>*/}
-                                                {/*TODO: pass this.prop.userId through create deck comp*/}
-                                            </div>
-                                        )
-                                    })}
-                                    </tbody>
-                                </Table>
+                                <div className="deck-table-title">Decks</div>
+                                {this.state.deckList.map((deck, index) => {
+                                    return (
+                                        <div key={`f432fw44f - ${index}`}>
+                                            <Link to={`/deck/${deck.id}`} className="deck-title">
+                                                <div style={{ width: '18rem' }}>{deck.name}</div>
+                                            </Link>
+                                            {/*<div>Flashcards: {deck.flashcards.length}</div>*/}
+                                            {/*<div>Likes: {deck.likes.length}</div>*/}
+                                            {/*TODO: pass this.prop.userId through create deck comp*/}
+                                        </div>
+                                    )
+                                })}
                             </div>
                             <div className="add-deck-button">
                                 <Button variant="outline-dark" onClick={this.toggleNewDeckForm} >
