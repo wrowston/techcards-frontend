@@ -11,14 +11,18 @@ class EditFlashcard extends Component {
         }
     }
 
-    componentDidMount() {
-        this.getFlashcardById()
+    componentDidMount() { // waitress
+        console.log("hello world") // waitress takes order
+        this.getFlashcardById() // watiress puts order in and waits for food to be done adn give to customer
+        console.log("hewo"); // waitress deals with other customers
     }
 
-    getFlashcardById = async () => {
+    getFlashcardById = async () => { // customer
+        console.log("getting flashcard...") // tell waitress the order
         try {
             const flashcardId = this.props.match.params.flashcardId
-            const res = await axios.get(`https://protected-temple-87139.herokuapp.com/api/v1/flashcards/${flashcardId}`)
+            const res = await axios.get(`https://protected-temple-87139.herokuapp.com/api/v1/flashcards/${flashcardId}`) // food is cooking
+            console.log("i got the flashcard...") // customer is waiting for order
             const newState = { ...this.state }
             newState.flashcard = res.data
             this.setState(newState)

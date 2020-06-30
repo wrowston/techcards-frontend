@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import NewSubjectForm from "./NewSubjectForm";
@@ -19,8 +19,9 @@ class AllSubjects extends Component {
 
     getAllSubjects = async () => {
         try {
+            //loading....
             const res = await axios.get('https://protected-temple-87139.herokuapp.com/api/v1/subject/all')
-            const newState = {...this.state}
+            const newState = { ...this.state }
             newState.currentUserId = this.props.userId
             newState.allSubjects = res.data
             this.setState(newState)
@@ -28,6 +29,7 @@ class AllSubjects extends Component {
             console.log("failed to get allsubjects")
             console.error(e)
         }
+        // remove loading 
     }
 
     toggleNewSubjectForm = () => {
@@ -39,45 +41,45 @@ class AllSubjects extends Component {
         return (
             <div className="all-subjects">
                 {this.state.showNewSubjectForm
-                ?
+                    ?
                     <div>
-                        <NewSubjectForm/>
+                        <NewSubjectForm />
                         <Button variant="outline-dark" className="back-button" onClick={this.toggleNewSubjectForm} >
                             Back to All Subjects
                         </Button>
                     </div>
-                :
+                    :
                     <div>
                         <div className="title">Select a subject to begin studying</div>
                         <div className="subject-list">
                             {this.state.allSubjects.map((subject, index) => {
                                 return (
                                     <div key={`t3426gfw7 - ${index}`}>
-                                            {/*TODO: use subject name instead of id in url... pass id through with props*/}
-                                            <Link to={`/subject/${subject.id}`}
-                                            //       onClick={() => {
-                                            //     const newState = {...this.state}
-                                            //     newState.currentSubjectId = subject.id
-                                            //     this.setState(newState)
-                                            // }}
-                                            >
-                                                <div className="subject">
-                                                    <img className="subject-img" src={subject.imageUrl}/>
-                                                    <div className="subject-name">{subject.name}</div>
-                                                    {/*TODO: add deck length to get total decks*/}
-                                                </div>
-                                            </Link>
+                                        {/*TODO: use subject name instead of id in url... pass id through with props*/}
+                                        <Link to={`/subject/${subject.id}`}
+                                        //       onClick={() => {
+                                        //     const newState = {...this.state}
+                                        //     newState.currentSubjectId = subject.id
+                                        //     this.setState(newState)
+                                        // }}
+                                        >
+                                            <div className="subject">
+                                                <img className="subject-img" src={subject.imageUrl} />
+                                                <div className="subject-name">{subject.name}</div>
+                                                {/*TODO: add deck length to get total decks*/}
+                                            </div>
+                                        </Link>
                                     </div>
-                                    )
+                                )
                             })}
 
-                            </div>
+                        </div>
 
                         <Button variant="outline-dark" onClick={this.toggleNewSubjectForm} >
                             Add A Subject
                         </Button>
                     </div>
-                    }
+                }
             </div>
         );
     }

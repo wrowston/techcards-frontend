@@ -98,6 +98,7 @@ class SingleSubject extends Component {
                             <AllDecksBySubjectId
                                 subjectId={this.props.match.params.subjectId}
                                 userId={this.props.userId}
+                                userName={this.props.userName}
                             />
                         </div>
                     </div>

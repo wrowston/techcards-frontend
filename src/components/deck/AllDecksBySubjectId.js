@@ -40,9 +40,10 @@ class AllDecksBySubjectId extends Component {
                 <div>
                     {this.state.showNewDeckForm
                         ?
-                        <div>
+                        <div className="new-deck-form">
                             <NewDeck
                                 userId={this.props.userId}
+                                userName={this.props.userName}
                                 subjectId={this.props.subjectId}
                             />
                             <Button variant="outline-dark" className="back-button" onClick={this.toggleNewDeckForm} >
