@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import axios from "axios";
 import AllFlashcardsByDeckId from "../flashcard/AllFlashcardsByDeckId";
 import Button from "react-bootstrap/Button";
+import { Link } from 'react-router-dom';
+import edit from '../icons/edit-button.png'
+
 
 class SingleDeck extends Component {
 
@@ -10,7 +13,7 @@ class SingleDeck extends Component {
             name: '',
             flashcards: []
         },
-        showEditForm: false
+        showEditForm: false,
     }
 
     componentDidMount() {
@@ -59,13 +62,18 @@ class SingleDeck extends Component {
                     </div>
                     :
                     <div>
-                        <div className="title">{this.state.deck.name}</div>
+                        <div className="deck-header">
+                            <div className="title">{this.state.deck.name}</div>
+                            <div className="deck-edit-btn">
+                                {/* Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> */}
+                                <Link onClick={this.toggleEditForm} >
+                                    <img src={edit} alt="Edit Button" className="edit-btn" />
+                                </Link>
+                            </div>
+                        </div>
                         <AllFlashcardsByDeckId
                             deckId={this.props.match.params.deckId}
                         />
-                        <Button variant="outline-dark" onClick={this.toggleEditForm} >
-                            Edit
-                        </Button>
                     </div>
                 }
             </div>

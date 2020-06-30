@@ -7,7 +7,7 @@ class NewFlashcard extends Component {
         flashcard: {
             clue: '',
             answer: '',
-            deckId: ''
+            deckId: this.props.deckId
         }
     }
 
@@ -50,13 +50,12 @@ class NewFlashcard extends Component {
                         value={this.state.flashcard.answer}
                         required
                     />
-                    <label className="form-label">Deck ID</label>
                     <input
-                        type='text'
+                        type='hidden'
                         name='deckId'
                         className="form-input"
                         onChange={this.handleChange}
-                        value={this.props.deckId}
+                        value={this.state.flashcard.deckId}
                     />
                     <input type="submit" value="Add" />
                 </form>

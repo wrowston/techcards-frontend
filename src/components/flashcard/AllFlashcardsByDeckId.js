@@ -1,10 +1,13 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import NewFlashcard from "./NewFlashcard";
 import EditFlashcard from "./EditFlashcard";
+import addButton from "../icons/add-button-with-plus-symbol-in-a-black-circle.png"
+import edit from '../icons/edit-button.png'
+
 
 class AllFlashcardsByDeckId extends Component {
 
@@ -23,7 +26,7 @@ class AllFlashcardsByDeckId extends Component {
         try {
             const deckId = this.props.deckId
             const res = await axios.get(`https://protected-temple-87139.herokuapp.com/api/v1/flashcards/deck/${deckId}`)
-            const newState = {...this.state}
+            const newState = { ...this.state }
             newState.flashcards = res.data
             this.setState(newState)
         } catch (e) {
@@ -34,18 +37,18 @@ class AllFlashcardsByDeckId extends Component {
 
     toggleAnswer = () => {
         const showAnswer = !this.state.showAnswer
-        this.setState({showAnswer})
+        this.setState({ showAnswer })
     }
 
     toggleNewCardForm = () => {
         const showNewCardForm = !this.state.showNewCardForm
-        this.setState({showNewCardForm})
+        this.setState({ showNewCardForm })
     }
 
 
     toggleEditCard = () => {
         const editCard = !this.state.editCard
-        this.setState({editCard})
+        this.setState({ editCard })
     }
 
     render() {
@@ -59,61 +62,57 @@ class AllFlashcardsByDeckId extends Component {
                                 {this.state.showAnswer
                                     ?
                                     <div>
-                                        <Card style={{width: '26rem'}}>
+                                        <Card style={{ width: '26rem' }}>
                                             <Card.Body>
                                                 <Card.Text>
                                                     {card.answer}
                                                 </Card.Text>
                                                 <Button variant="primary" onClick={this.toggleAnswer}>Show the
                                                     Clue</Button>
+                                                <Link to={`/flashcards/editFlashcard/${card.id}`}>
+                                                    <Button variant="outline-dark">Edit Card</Button>
+                                                </Link>
                                             </Card.Body>
                                         </Card>
                                     </div>
                                     :
                                     <div>
-                                        <Card style={{width: '26rem'}}>
+                                        <Card style={{ width: '26rem' }}>
                                             <Card.Body>
                                                 <Card.Text>
                                                     {card.clue}
                                                 </Card.Text>
-                                                <Button variant="primary" onClick={this.toggleAnswer}>Show the
-                                                    Answer</Button>
+                                                <Button variant="primary" onClick={this.toggleAnswer}>Show the Answer</Button>
+                                                {/* Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> */}
+                                                <Link to={`/flashcards/editFlashcard/${card.id}`} >
+                                                    <img src={edit} alt="Edit Button" className="edit-btn" />
+                                                </Link>
                                             </Card.Body>
                                         </Card>
                                     </div>
                                 }
-
-                                <div>
-                                    {this.state.editCard
-                                    ?
-                                        <div>
-                                            {/*<EditFlashcard*/}
-                                            {/*    flashcardId={card.id}*/}
-                                            {/*    deckId={card.deckId}*/}
-                                            {/*/>*/}
-                                            <Button variant="outline-dark" onClick={this.toggleEditCard}>Hide Form</Button>
-                                        </div>
-                                    :
-                                        <div>
-                                            <Link to={`/flashcards/editFlashcard/${card.id}`}>
-                                                <Button variant="outline-dark">Edit Card</Button>
-                                            </Link>
-                                        </div>
-                                    }
-                                </div>
                             </div>
                         )
                     })}
-                </div>
-                {this.state.showNewCardForm
-                ?
                     <div>
-                        <NewFlashcard deckId={this.props.deckId}/>
-                        <Button variant="outline-dark" onClick={this.toggleNewCardForm}>Hide Form</Button>
+                        {this.state.showNewCardForm
+                            ?
+                            <div className="new-card-form">
+                                <NewFlashcard deckId={this.props.deckId} />
+                                <div className="hide-form-btn">
+                                    <Button variant="outline-dark" onClick={this.toggleNewCardForm}>Hide Form</Button>
+                                </div>
+                            </div>
+                            :
+                            <div className="add-btn-wrapper">
+                                {/* <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */}
+                                <Link onClick={this.toggleNewCardForm}>
+                                    <img src={addButton} className="add-btn" />
+                                </Link>
+                            </div>
+                        }
                     </div>
-                    :
-                    <Button variant="outline-dark" onClick={this.toggleNewCardForm}>Add a Flashcard</Button>
-                }
+                </div>
             </div>
         );
     }
