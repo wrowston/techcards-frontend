@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from "axios";
 
 class NewFlashcard extends Component {
@@ -12,7 +12,7 @@ class NewFlashcard extends Component {
     }
 
     handleChange = (evt) => {
-        const newState = {...this.state}
+        const newState = { ...this.state }
         newState.flashcard[evt.target.name] = evt.target.value
         this.setState(newState)
     }
@@ -39,6 +39,7 @@ class NewFlashcard extends Component {
                         className="form-input"
                         onChange={this.handleChange}
                         value={this.state.flashcard.clue}
+                        required
                     />
                     <label className="form-label">Answer</label>
                     <textarea
@@ -47,6 +48,7 @@ class NewFlashcard extends Component {
                         className="form-input"
                         onChange={this.handleChange}
                         value={this.state.flashcard.answer}
+                        required
                     />
                     <label className="form-label">Deck ID</label>
                     <input
@@ -56,7 +58,7 @@ class NewFlashcard extends Component {
                         onChange={this.handleChange}
                         value={this.props.deckId}
                     />
-                    <input type="submit" value="Add"/>
+                    <input type="submit" value="Add" />
                 </form>
             </div>
         );

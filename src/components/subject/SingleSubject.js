@@ -68,6 +68,7 @@ class SingleSubject extends Component {
                                 className="form-input"
                                 onChange={this.handleChange}
                                 value={this.state.subject.name}
+                                required
                             />
                             <label className="form-label">Image URL</label>
                             <input
@@ -76,6 +77,7 @@ class SingleSubject extends Component {
                                 className="form-input"
                                 onChange={this.handleChange}
                                 value={this.state.subject.imageUrl}
+                                required
                             />
                             <input type="submit" value="Save" />
                             <Button variant="outline-dark" className="back-button" onClick={this.toggleEditForm} >

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from "axios";
 import AllFlashcardsByDeckId from "../flashcard/AllFlashcardsByDeckId";
 import Button from "react-bootstrap/Button";
@@ -21,7 +21,7 @@ class SingleDeck extends Component {
         try {
             const deckId = this.props.match.params.deckId
             const res = await axios.get(`https://protected-temple-87139.herokuapp.com/api/v1/deck/${deckId}`)
-            const newState = {...this.state}
+            const newState = { ...this.state }
             newState.deck = res.data
             this.setState(newState)
         } catch (e) {
@@ -34,12 +34,12 @@ class SingleDeck extends Component {
         const showEditForm = !this.state.showEditForm
         this.setState({ showEditForm })
     }
-    
+
     render() {
         return (
             <div>
                 {this.state.showEditForm
-                ?
+                    ?
                     <div>
                         <form onSubmit={this.onSubmit} className="form">
                             <label className="form-label">Deck Name</label>
@@ -49,14 +49,15 @@ class SingleDeck extends Component {
                                 className="form-input"
                                 onChange={this.handleChange}
                                 value={this.state.deck.name}
+                                required
                             />
-                            <input type="submit" value="Save"/>
+                            <input type="submit" value="Save" />
                         </form>
                         <Button variant="outline-dark" className="back-button" onClick={this.toggleEditForm} >
                             Back
                         </Button>
                     </div>
-                :
+                    :
                     <div>
                         <div className="title">{this.state.deck.name}</div>
                         <AllFlashcardsByDeckId

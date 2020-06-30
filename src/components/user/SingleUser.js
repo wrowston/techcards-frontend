@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios'
 import Button from "react-bootstrap/Button";
 
@@ -19,7 +19,7 @@ class SingleUser extends Component {
         try {
             const userId = this.props.match.params.userId
             const res = await axios.get(`https://protected-temple-87139.herokuapp.com/api/v1/user/${userId}`)
-            const newState = {...this.state}
+            const newState = { ...this.state }
             newState.user = res.data
             this.setState(newState)
         } catch (e) {
@@ -29,7 +29,7 @@ class SingleUser extends Component {
     }
 
     handleChange = (evt) => {
-        const newState = {...this.state}
+        const newState = { ...this.state }
         newState.user[evt.target.name] = evt.target.value
         this.setState(newState)
     }
@@ -55,7 +55,7 @@ class SingleUser extends Component {
             //TODO: get user's created decks and liked decks
             <div>
                 {this.state.showEditForm
-                ?
+                    ?
                     <div>
                         <form onSubmit={this.onSubmit}>
                             <label>Name</label>
@@ -64,6 +64,7 @@ class SingleUser extends Component {
                                 name='name'
                                 onChange={this.handleChange}
                                 value={this.state.user.name}
+                                required
                             />
                             <label>About</label>
                             <input
@@ -71,14 +72,15 @@ class SingleUser extends Component {
                                 name='about'
                                 onChange={this.handleChange}
                                 value={this.state.user.about}
+                                required
                             />
-                            <input type="submit" value="Save"/>
+                            <input type="submit" value="Save" />
                         </form>
                         <Button variant="outline-dark" onClick={this.toggleEditForm} >
                             Back
                         </Button>
                     </div>
-                :
+                    :
                     <div>
                         <div className="title">{this.state.user.name}</div>
                         <div className="about">{this.state.user.about}</div>

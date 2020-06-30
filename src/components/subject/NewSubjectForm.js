@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios'
 
 class NewSubjectForm extends Component {
@@ -11,7 +11,7 @@ class NewSubjectForm extends Component {
     }
 
     handleChange = (evt) => {
-        const newState = {...this.state}
+        const newState = { ...this.state }
         newState.subject[evt.target.name] = evt.target.value
         this.setState(newState)
     }
@@ -38,6 +38,7 @@ class NewSubjectForm extends Component {
                         className="form-input"
                         onChange={this.handleChange}
                         value={this.state.subject.name}
+                        required
                     />
                     <label className="form-label">Image URL</label>
                     <input
@@ -46,8 +47,9 @@ class NewSubjectForm extends Component {
                         className="form-input"
                         onChange={this.handleChange}
                         value={this.state.subject.imageUrl}
+                        required
                     />
-                    <input type="submit" value="Add Subject"/>
+                    <input type="submit" value="Add Subject" />
                 </form>
             </div>
         );

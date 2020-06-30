@@ -65,6 +65,7 @@ class EditFlashcard extends Component {
                             className="form-input"
                             value={this.props.match.params.flashcardId}
                             onChange={this.handleChange}
+                            required
                         />
                         <label className="form-label">Clue</label>
                         <textarea
@@ -73,6 +74,7 @@ class EditFlashcard extends Component {
                             className="form-input"
                             onChange={this.handleChange}
                             value={this.state.flashcard.clue}
+                            required
                         />
                         <label className="form-label">Answer</label>
                         <textarea
@@ -81,6 +83,7 @@ class EditFlashcard extends Component {
                             className="form-input"
                             onChange={this.handleChange}
                             value={this.state.flashcard.answer}
+                            required
                         />
                         <input
                             type="hidden"
@@ -88,6 +91,7 @@ class EditFlashcard extends Component {
                             className="form-input"
                             value={this.props.deckId}
                             onChange={this.handleChange}
+                            required
                         />
                         <input type="submit" value="Save" />
                     </form>

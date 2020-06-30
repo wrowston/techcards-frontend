@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from "axios";
 
 class NewUser extends Component {
@@ -12,7 +12,7 @@ class NewUser extends Component {
 
 
     handleChange = (evt) => {
-        const newState = {...this.state}
+        const newState = { ...this.state }
         newState.user[evt.target.name] = evt.target.value
         this.setState(newState)
     }
@@ -38,6 +38,7 @@ class NewUser extends Component {
                         name='name'
                         onChange={this.handleChange}
                         value={this.state.user.name}
+                        required
                     />
                     <label>About</label>
                     <input
@@ -45,8 +46,9 @@ class NewUser extends Component {
                         name='about'
                         onChange={this.handleChange}
                         value={this.state.user.imageUrl}
+                        required
                     />
-                    <input type="submit" value="Create User"/>
+                    <input type="submit" value="Create User" />
                 </form>
             </div>
         );

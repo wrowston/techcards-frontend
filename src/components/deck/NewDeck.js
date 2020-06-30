@@ -39,6 +39,7 @@ class NewDeck extends Component {
                         className="form-input"
                         onChange={this.handleChange}
                         value={this.state.deck.name}
+                        required
                     />
                     <label className="form-label">Current User</label>
                     <input
@@ -47,6 +48,7 @@ class NewDeck extends Component {
                         className="form-input"
                         onChange={this.handleChange}
                         value={this.props.userName}
+                        required
                     />
                     <input
                         type='hidden'
@@ -54,6 +56,7 @@ class NewDeck extends Component {
                         className="form-input"
                         onChange={this.handleChange}
                         value={this.props.userId}
+                        required
                     />
                     <input
                         type='hidden'
@@ -61,6 +64,7 @@ class NewDeck extends Component {
                         className="form-input"
                         onChange={this.handleChange}
                         value={this.props.subjectId}
+                        required
                     />
                     <input type="submit" value="Add Deck" />
                 </form>
