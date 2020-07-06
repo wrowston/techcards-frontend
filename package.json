@@ -23,7 +23,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:8080/",
+  "proxy": "https://protected-temple-87139.herokuapp.com/",
   "eslintConfig": {
     "extends": "react-app"
   },

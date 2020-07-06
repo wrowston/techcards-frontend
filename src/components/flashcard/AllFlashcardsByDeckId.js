@@ -69,8 +69,9 @@ class AllFlashcardsByDeckId extends Component {
                                                 </Card.Text>
                                                 <Button variant="primary" onClick={this.toggleAnswer}>Show the
                                                     Clue</Button>
-                                                <Link to={`/flashcards/editFlashcard/${card.id}`}>
-                                                    <Button variant="outline-dark">Edit Card</Button>
+                                                {/* Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> */}
+                                                <Link to={`/flashcards/editFlashcard/${card.id}`} >
+                                                    <img src={edit} alt="Edit Button" className="edit-btn" />
                                                 </Link>
                                             </Card.Body>
                                         </Card>

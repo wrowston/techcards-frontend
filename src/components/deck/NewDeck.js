@@ -5,9 +5,9 @@ class NewDeck extends Component {
     state = {
         deck: {
             name: '',
-            creatorId: '',
-            creatorName: '',
-            subjectId: ''
+            creatorId: this.props.userId,
+            creatorName: this.props.userName,
+            subjectId: this.props.subjectId
         }
     }
 
@@ -63,7 +63,7 @@ class NewDeck extends Component {
                         name='subjectId'
                         className="form-input"
                         onChange={this.handleChange}
-                        value={this.props.subjectId}
+                        value={this.state.deck.subjectId}
                         required
                     />
                     <input type="submit" value="Add Deck" />
